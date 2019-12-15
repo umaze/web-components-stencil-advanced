@@ -37,7 +37,9 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface UmStockFinder {}
+  interface UmStockFinder {
+    'onUmSymbolSelected'?: (event: CustomEvent<string>) => void;
+  }
   interface UmStockPrice {
     'stockSymbol'?: string;
   }
