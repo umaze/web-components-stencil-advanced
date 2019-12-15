@@ -10,6 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface UmSpinner {}
   interface UmStockFinder {}
   interface UmStockPrice {
     'stockSymbol': string;
@@ -18,6 +19,12 @@ export namespace Components {
 
 declare global {
 
+
+  interface HTMLUmSpinnerElement extends Components.UmSpinner, HTMLStencilElement {}
+  var HTMLUmSpinnerElement: {
+    prototype: HTMLUmSpinnerElement;
+    new (): HTMLUmSpinnerElement;
+  };
 
   interface HTMLUmStockFinderElement extends Components.UmStockFinder, HTMLStencilElement {}
   var HTMLUmStockFinderElement: {
@@ -31,12 +38,14 @@ declare global {
     new (): HTMLUmStockPriceElement;
   };
   interface HTMLElementTagNameMap {
+    'um-spinner': HTMLUmSpinnerElement;
     'um-stock-finder': HTMLUmStockFinderElement;
     'um-stock-price': HTMLUmStockPriceElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface UmSpinner {}
   interface UmStockFinder {
     'onUmSymbolSelected'?: (event: CustomEvent<string>) => void;
   }
@@ -45,6 +54,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'um-spinner': UmSpinner;
     'um-stock-finder': UmStockFinder;
     'um-stock-price': UmStockPrice;
   }
@@ -56,6 +66,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
+      'um-spinner': LocalJSX.UmSpinner & JSXBase.HTMLAttributes<HTMLUmSpinnerElement>;
       'um-stock-finder': LocalJSX.UmStockFinder & JSXBase.HTMLAttributes<HTMLUmStockFinderElement>;
       'um-stock-price': LocalJSX.UmStockPrice & JSXBase.HTMLAttributes<HTMLUmStockPriceElement>;
     }
